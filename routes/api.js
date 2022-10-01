@@ -1928,30 +1928,6 @@ router.get('/kuis/tebakgambar', async (req, res, next) => {
 })
 })
 
-
-router.get('/news/cnn', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            type = req.query.type
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'ar') return res.json(loghandler.invalidKey)
-    if (!type) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter type"})
-
-       fetch(encodeURI(`https://news-api-zhirrr.vercel.app/v1/cnn-news/${type}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-             	authot: 'ar'
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-
 router.get('/news/cnbc', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             type = req.query.type
